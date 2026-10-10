@@ -2,4 +2,10 @@ framework:
   - terraform
 compact: true
 quiet: true
-skip-check: []
+skip-check:
+  - CKV_AZURE_59    # El sitio estatico debe ser publico por diseno: bloquear la red publica dejaria la pagina inaccesible para los usuarios
+  - CKV2_AZURE_33   # Un endpoint privado solo sirve dentro de una VNet; el sitio se consume desde Internet y el lab no tiene red privada
+  - CKV2_AZURE_1    # Solo hay un index.html publico, sin datos sensibles; la clave de Microsoft basta y CMK exigiria Key Vault y su gestion
+  - CKV_AZURE_206   # Contenido reproducible desde Git con un apply: LRS es suficiente y GRS/ZRS solo aumentaria el costo
+  - CKV_AZURE_33    # La cuenta no usa el servicio de colas, asi que no hay actividad de Queue que registrar
+  - CKV2_AZURE_40   # Terraform (azurerm_storage_blob) sube index.html al contenedor $web con la clave de cuenta; deshabilitarla rompe el despliegue (ver Pregunta 5)
