@@ -6,7 +6,7 @@ GH_USER="juandivg26"
 GH_REPO="gitops-lab"
 # -------------------------------------------------------------------------
 
-LOC="eastus2"
+LOC="centralus"
 RG_STATE="rg-gitops-state"
 RG_DEV="rg-gitops-dev"
 RG_PROD="rg-gitops-prod"
